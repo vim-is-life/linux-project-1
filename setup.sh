@@ -39,4 +39,7 @@ s/#(PasswordAuthentication) yes/\\1 no/
 s/#(PubkeyAuthentication yes)/\\1/
 s/(UsePAM) yes/\\1 no/" ./config/ssh/sshd_config
 
+# enable the ssh service immediately
+sudo systemctl enable --now ssh
+
 # SET UP SERVER ###############################################################
