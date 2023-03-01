@@ -33,9 +33,10 @@ sudo ufw enable
 # change default ssh port in config
 # disallow root login
 # only allow public key auth and deny passwords
-sed "s/#Port 22/Port $SSH_PORT/
-s/(PermitRootLogin) yes/\1 no/
-s/#(PubkeyAuthentication yes)/\1/
-s/(UsePAM) yes/\1 no/"
+sed -E "s/#Port 22/Port $SSH_PORT/
+s/(PermitRootLogin) yes/\\1 no/
+s/#(PasswordAuthentication) yes/\\1 no/
+s/#(PubkeyAuthentication yes)/\\1/
+s/(UsePAM) yes/\\1 no/" ./config/ssh/sshd_config
 
 # SET UP SERVER ###############################################################
