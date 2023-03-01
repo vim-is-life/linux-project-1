@@ -27,7 +27,15 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow "$HTTP_PORT"
 sudo ufw allow "$SSH_PORT"
+sudo ufw enable
 
 # SET UP SSH ##################################################################
+# change default ssh port in config
+# disallow root login
+# only allow public key auth and deny passwords
+sed "s/#Port 22/Port $SSH_PORT/
+s/(PermitRootLogin) yes/\1 no/
+s/#(PubkeyAuthentication yes)/\1/
+s/(UsePAM) yes/\1 no/"
 
 # SET UP SERVER ###############################################################

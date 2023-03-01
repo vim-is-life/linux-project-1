@@ -11,3 +11,6 @@ And then run the script like the below
 ``` shell
 ./setup.sh
 ```
+
+# Configuration
+Files in the `ssh` and `nginx` are for the system and will be moved by the script to the appropriate directories.
