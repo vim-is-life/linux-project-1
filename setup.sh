@@ -11,3 +11,23 @@
 #   git clone https://github.com/vim-is-life/linux-project-1.git
 # And then run the script like the below
 #   ./setup.sh
+
+PACKAGES="$(tr <PACKAGES '\n' ' ')"
+SSH_PORT="$(awk '/ssh/ {print $2}' PORTS)"
+HTTP_PORT="$(awk '/http/ {print $2}' PORTS)"
+
+# INSTALL PACKAGES ############################################################
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install "$PACKAGES"
+
+# SET UP FIREWALL #############################################################
+# to set defaults to deny incoming traffic and allow outgoing and then open
+# ports as necessary
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow "$HTTP_PORT"
+sudo ufw allow "$SSH_PORT"
+
+# SET UP SSH ##################################################################
+
+# SET UP SERVER ###############################################################
