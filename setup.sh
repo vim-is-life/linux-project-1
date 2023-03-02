@@ -43,3 +43,14 @@ s/(UsePAM) yes/\\1 no/" ./config/ssh/sshd_config
 sudo systemctl enable --now ssh
 
 # SET UP SERVER ###############################################################
+sudo mkdir -p /var/www/seminar/html -p
+sudo chown -R $USER:$USER /var/www/seminar/html
+sudo chmod -R 755 /var/www/seminar
+# copy the forbes front page as our index.html to make things simpler
+curl -fLo /var/www/seminar/index.html 'https://www.forbes.com/'
+# take config file, copy to sites-available, then symlink to sites-enabled
+sudo cp ./config/nginx/seminar /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/seminar /etc/nginx/sites-enabled/seminar
+sudo systemctl restart nginx
+
+# TESTS #######################################################################
