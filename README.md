@@ -1,6 +1,7 @@
 # linux-project-1
-Script is intended to run to set up the pi zero for my project from the moment
-after user initialization.
+This repo is intended to be able to set up the pi zero for my project from the
+moment after user initialization in the event of an OS corruption or something
+of the sort.
 
 Wifi should be set up and git installed before running this script. Download it like the below.
 ``` shell
