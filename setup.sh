@@ -54,3 +54,15 @@ sudo ln -s /etc/nginx/sites-available/seminar /etc/nginx/sites-enabled/seminar
 sudo systemctl restart nginx
 
 # TESTS #######################################################################
+# test with perspective of outside conn trying to see what ports are open to get
+# in.  we'll run it async with & because it takes a while
+nc -vz localhost 1-65535 2>&1 | grep -v 'Connection refused' >/tmp/nc.txt &
+
+# show the only ports that are being listened on with lsof
+sudo lsof -i -P -n | grep LISTEN
+
+# but then show that we can view the webpage (which accounts for port 80)
+curl http://localhost # OR view it in browser by going to the IP
+
+# and go back to remind that we're on the one port for ssh currently
+grep '^Port' /etc/ssh/sshd_config

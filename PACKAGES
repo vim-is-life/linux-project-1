@@ -1,3 +1,5 @@
 nginx
 ufw
 curl
+nc
+lsof
